@@ -5,7 +5,7 @@
  * @version 1.2.0 - 2022/06/08
  *    Removed use of depricated global $wgParser in favor of MediaWikiServices singleton
  *
- * @version 1.1.0 - 2012/02/16 
+ * @version 1.1.0 - 2012/02/16
  *
  * @link http://www.mediawiki.org/wiki/Extension:NewPageCSS Documentation
  *
@@ -29,33 +29,35 @@ use MediaWiki\MediaWikiServices;
 $wgExtensionCredits['parserhook'][] = array(
 	'path' => __FILE__,
 	'name' => 'New Page CSS',
-        'version' => '1.2.0',
+	'version' => '1.2.0',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:NewPageCSS',
 	'description' => 'Adds a parser hook to add per-page CSS using the <tt>&lt;css&gt;</tt> tag',
 	'author' => array( 'Julian Porter', '&ampAElig;var Arnfj&ampouml;r&ampeth; Bjarmason' ),
 );
 
-$wgHooks['ParserFirstCallInit'][] = 'CSS_setup';
+$wgHooks['ParserFirstCallInit'][] = 'NewPageCSS::CSS_setup';
 
-function CSS_setup(&$parser)
-{
-  $parser->setHook("css","CSS_include");
-  return true;
-}
+class NewPageCSS {
+    public static function CSS_setup(&$parser)
+    {
+        $parser->setHook("css","NewPageCSS::CSS_include");
+        return true;
+    }
 
-function CSS_include($content)
-{
+    public static function CSS_include($content)
+    {
 
-  $parser = MediaWikiServices::getInstance()->getParser();
+        $parser = MediaWikiServices::getInstance()->getParser();
 
-  $css = htmlspecialchars( trim( Sanitizer::checkCss( $content ) ) );
-  $parser->getOutput()->addHeadItem( <<<EOT
+        $css = htmlspecialchars( trim( Sanitizer::checkCss( $content ) ) );
+        $parser->getOutput()->addHeadItem( <<<EOT
 <style type="text/css">
-/*<![CDATA[*/      
+/*<![CDATA[*/
 {$css}
-/*]]>*/       
+/*]]>*/
 </style>
 EOT
-  );
-  return '';
+        );
+        return '';
+    }
 }
