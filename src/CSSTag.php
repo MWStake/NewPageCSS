@@ -11,7 +11,7 @@ class CSSTag {
 	 * Handle the css tag
 	 *
 	 * @param string $content of the css tag
-	 * @returns string empty
+	 * @return string empty
 	 */
 	public static function handler( string $content ): string {
 		$parser = MediaWikiServices::getInstance()->getParser();

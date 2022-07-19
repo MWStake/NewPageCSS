@@ -19,20 +19,35 @@
       "email": "mah@nichework.com"
     }
   ],
-  "extra": {
-    "installer-name": "NewPageCSS"
-  },
-  "require-dev": {
-    "mediawiki/mediawiki-codesniffer": "^39.0",
-    "mediawiki/minus-x": "^1.1"
-  },
-  "license": "GPL-2.0-or-later",
   "autoload": {
     "psr-4": {
       "MWStake\\NewPageCSS\\": "src/"
     }
   },
-  "require": {
-    "vimeo/psalm": "^4.24"
+  "extra": {
+    "installer-name": "NewPageCSS"
+  },
+  "license": "GPL-2.0-or-later",
+  "require-dev": {
+    "mediawiki/mediawiki-codesniffer": "^39.0",
+    "mediawiki/minus-x": "^1.1",
+    "vimeo/psalm": "^4.24",
+    "mediawiki/mediawiki-phan-config": "^0.11.1",
+    "php-parallel-lint/php-console-highlighter": "^1.0",
+    "php-parallel-lint/php-parallel-lint": "^1.3"
+  },
+  "scripts": {
+    "fix": [
+      "minus-x fix .",
+      "phpcbf"
+    ],
+    "test": [
+      "parallel-lint . --exclude node_modules --exclude vendor",
+      "@phpcs",
+      "minus-x check ."
+    ],
+    "phan": "phan -d . --long-progress-bar",
+    "phpcs": "phpcs -sp --cache",
+    "psalm": "psalm --long-progress ."
   }
 }
