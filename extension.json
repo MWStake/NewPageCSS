@@ -1,0 +1,28 @@
+{
+	"name": "New Page CSS",
+	"version": "1.3.0",
+	"author": [
+		"Ævar Arnfjörð Bjarmason",
+		"Julian Porter",
+		"Kristian Delay",
+		"Mark A. Hershberger"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:NewPageCSS",
+	"description": "Adds a parser hook to add per-page CSS using the <tt>&lt;css&gt;</tt> tag",
+	"type": "parserhook",
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
+	"AutoloadNamespaces": {
+		"MWStake\\NewPageCSS\\": "src/"
+	},
+	"Hooks": {
+		"ParserFirstCallInit": "hooks"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MWStake\\NewPageCSS\\HookHandler"
+		}
+	},
+	"manifest_version": 2
+}

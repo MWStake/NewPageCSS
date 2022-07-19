@@ -1,0 +1,38 @@
+{
+  "name": "mwstake/new-page-css",
+  "type": "mediawiki-extension",
+  "authors": [
+    {
+      "name": "Ævar Arnfjörð Bjarmason",
+      "email": "avarab@gmail.com"
+    },
+    {
+      "name": "Julian Porter",
+      "email": "julian.porter@porternet.org"
+    },
+    {
+      "name": "Kristian Delay",
+      "email": "kristiandelay@gmail.com"
+    },
+    {
+      "name": "Mark A. Hershberger",
+      "email": "mah@nichework.com"
+    }
+  ],
+  "extra": {
+    "installer-name": "NewPageCSS"
+  },
+  "require-dev": {
+    "mediawiki/mediawiki-codesniffer": "^39.0",
+    "mediawiki/minus-x": "^1.1"
+  },
+  "license": "GPL-2.0-or-later",
+  "autoload": {
+    "psr-4": {
+      "MWStake\\NewPageCSS\\": "src/"
+    }
+  },
+  "require": {
+    "vimeo/psalm": "^4.24"
+  }
+}
