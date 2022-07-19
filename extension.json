@@ -17,7 +17,7 @@
 		"MWStake\\NewPageCSS\\": "src/"
 	},
 	"Hooks": {
-		"ParserFirstCallInit": "hooks"
+		"ParserFirstCallInit": "main"
 	},
 	"HookHandlers": {
 		"main": {
