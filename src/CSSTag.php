@@ -2,7 +2,7 @@
 
 namespace MWStake\NewPageCSS;
 
-use MediaWiki\MediaWikiServices;
+use Parser;
 use Sanitizer;
 
 class CSSTag {
@@ -11,11 +11,11 @@ class CSSTag {
 	 * Handle the css tag
 	 *
 	 * @param string $content of the css tag
-	 * @return string empty
+	 * @param array $params unused
+	 * @param Parser $parser Parser to convert wikitext to html
+	 * @return string
 	 */
-	public static function handler( string $content ): string {
-		$parser = MediaWikiServices::getInstance()->getParser();
-
+	public static function handler( string $content, array $params, Parser $parser ): string {
 		$css = htmlspecialchars( trim( Sanitizer::checkCss( $content ) ) );
 		$parser->getOutput()->addHeadItem(
 			<<<EOT
